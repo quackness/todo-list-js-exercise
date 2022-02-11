@@ -1,53 +1,69 @@
-// Arrays to keep track of each task's state
-// const taskTitles = [];
-// const taskComplete = [];
-// const taskDescriptions = []; //step 1 create an array
 
-//use an object instead of arrays to keep track of the state
+// //using an object to keep track of the state
+// function newTask(title, description) {
+//   const task = {
+//     title: title,
+//     description: description,
+//     complete: false
+//   };
+//   return task //returns task title, description and state
+// }
+
+// // prints out the provided task's details
+// function logTaskState(task) {
+//   console.log(`${task.title} has${task.complete ? " " : " not "}been completed`);
+// }
+
+// function completeTask(task) {
+//   task.complete = true;
+// }
+
+// // DRIVER CODE:
+// const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box"); //title, description
+// const task2 = newTask("Do Laundry", "😨");
+// const tasks = [task1, task2];
+
+// logTaskState(task1); // Clean Cat Litter has not been completed, uses data from the object
+// completeTask(task1); //calling completeTask to pass true, this will change the outcome of the next console.log
+// logTaskState(task1); // Clean Cat Litter has been completed, uses object but the complete status was re-assigned to: true
+
+// //let's make sure we see our tasks
+// console.log(tasks); //logs an array of objects
+
+
+// Use Methods to make it object oriented. a task has been encapsulated inside the task object.
+
 function newTask(title, description) {
   const task = {
     title: title,
     description: description,
-    complete: false
+    complete: false,
+
+    logState: function() {
+      console.log(`${this.title} has${this.complete ? " " : " not "}been completed`); //this task
+    },
+
+    markCompleted: function() {
+      this.complete = true;
+    }
   };
-  return task
+  return task;
 }
-// DRIVER CODE BELOW
+
+// DRIVER CODE:
 const task1 = newTask("Clean Cat Litter", "Take all the 💩 out of the litter box"); //title, description
 const task2 = newTask("Do Laundry", "😨");
 const tasks = [task1, task2];
 
-// for now, let's just make sure we see our tasks
-console.log(tasks); // code works and it logs an array of objects
+//calls
+task1.logState(); // Clean Cat Litter has not been completed, uses data from the object
+task1.markCompleted(); //calling completeTask to pass true, this will change the outcome of the next console.log
+task1.logState(); // Clean Cat Litter has been completed, uses object but the complete status was re-assigned to: true
 
+task2.logState(); // Clean Cat Litter has not been completed, uses data from the object
+task2.markCompleted(); //calling completeTask to pass true, this will change the outcome of the next console.log
+task2.logState(); // Clean Cat Litter has been completed, uses object but the complete status was re-assigned to: true
 
+//let's make sure we see our tasks
+// console.log(tasks); //logs an array of objects
 
-
-// Create a new task by adding to the arrays
-// A new task will be created as incomplete
-// function newTask(title) {
-//   taskTitles.push(title);
-//   taskDescriptions.push(description); //modify the newTask function to account for the new array
-//   taskComplete.push(false);
-// }
-
-// // Mark a task as complete by setting the task's status in the `taskComplete` array to `true`
-// function completeTask(taskIndex) {
-//   taskComplete[taskIndex] = true;
-// }
-
-// // Print the state of a task to the console in a nice readable way
-// function logTaskState(taskIndex) {
-//   const title = taskTitles[taskIndex];
-//   const complete = taskComplete[taskIndex];
-//   console.log(`${title} has${complete ? " " : " not "}been completed`);
-// }
-
-// // DRIVER CODE BELOW
-
-// newTask("Clean Cat Litter"); // task 0
-// newTask("Do Laundry"); // task 1
-
-// logTaskState(0); // Clean Cat Litter has not been completed
-// completeTask(0);
-// logTaskState(0); // Clean Cat Litter has been completed
